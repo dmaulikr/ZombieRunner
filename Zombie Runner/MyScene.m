@@ -7,6 +7,7 @@
 //
 
 #import "MyScene.h"
+#import "Zombie.h"
 
 @implementation MyScene
 
@@ -22,6 +23,10 @@
         myLabel.fontSize = 30;
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
+        
+        [[Zombie alloc] initZombieForParent:self];
+        [[Zombie alloc] initZombieForParent:self];
+        [[Zombie alloc] initZombieForParent:self];
         
         [self addChild:myLabel];
     }
