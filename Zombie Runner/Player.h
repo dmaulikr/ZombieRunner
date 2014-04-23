@@ -11,5 +11,7 @@
 @interface Player : SKSpriteNode
 
 -(instancetype)initPlayerForParent:(SKScene*)parent;
+-(void)updateVelocity:(CGVector)velocity;
+
 
 @end

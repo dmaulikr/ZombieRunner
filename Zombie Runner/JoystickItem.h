@@ -10,10 +10,10 @@
 
 @interface JoystickItem : SKSpriteNode
 
+@property (weak, nonatomic) UITouch *touch;
+
 -(instancetype)initJoystickItemForParent:(SKScene*)parent;
-
--(void)updatePositionForTouch:(UITouch*)touch;
-
+-(CGVector)updateJoystick;
 -(void)released;
 
 @end

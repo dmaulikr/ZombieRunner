@@ -17,7 +17,6 @@
 		0473E410190857030096BE76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0473E40E190857030096BE76 /* Main.storyboard */; };
 		0473E413190857030096BE76 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473E412190857030096BE76 /* ViewController.m */; };
 		0473E416190857030096BE76 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473E415190857030096BE76 /* MyScene.m */; };
-		0473E418190857030096BE76 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0473E417190857030096BE76 /* Spaceship.png */; };
 		0473E41A190857030096BE76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0473E419190857030096BE76 /* Images.xcassets */; };
 		0473E421190857030096BE76 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0473E420190857030096BE76 /* XCTest.framework */; };
 		0473E422190857030096BE76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0473E3FA190857030096BE76 /* Foundation.framework */; };
@@ -61,7 +60,6 @@
 		0473E412190857030096BE76 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0473E414190857030096BE76 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		0473E415190857030096BE76 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
-		0473E417190857030096BE76 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		0473E419190857030096BE76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0473E41F190857030096BE76 /* Zombie RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Zombie RunnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0473E420190857030096BE76 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -149,7 +147,6 @@
 				0473E412190857030096BE76 /* ViewController.m */,
 				0473E414190857030096BE76 /* MyScene.h */,
 				0473E415190857030096BE76 /* MyScene.m */,
-				0473E417190857030096BE76 /* Spaceship.png */,
 				0473E419190857030096BE76 /* Images.xcassets */,
 				0473E403190857030096BE76 /* Supporting Files */,
 				0473E436190857210096BE76 /* Zombie.h */,
@@ -285,7 +282,6 @@
 				047632FC19086E72005DC1C8 /* joystickbg.png in Resources */,
 				0473E41A190857030096BE76 /* Images.xcassets in Resources */,
 				047632F419086A85005DC1C8 /* zombie.png in Resources */,
-				0473E418190857030096BE76 /* Spaceship.png in Resources */,
 				0473E410190857030096BE76 /* Main.storyboard in Resources */,
 				047632FB19086E72005DC1C8 /* joystick.png in Resources */,
 			);

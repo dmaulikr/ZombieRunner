@@ -36,8 +36,6 @@
     int randomX = (arc4random() % (int)floorf(xRange)) + minX;
     int randomY = (arc4random() % (int)floorf(yRange)) + minY;
     
-    NSLog(@"Point: %d, %d", randomX, randomY);
-    
     return CGPointMake(randomX, randomY);
 }
 

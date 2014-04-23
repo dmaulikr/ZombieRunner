@@ -14,7 +14,7 @@
 @interface MyScene()
 
 @property (strong, nonatomic) JoystickItem *stick;
-@property (weak, nonatomic) UITouch *joystickTouch;
+@property (strong, nonatomic) Player *player;
 
 @end
 
@@ -26,6 +26,7 @@
     if (self = [super initWithSize:size])
     {
         self.backgroundColor = [SKColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+        self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         
         [self resetGame];
         
@@ -45,7 +46,7 @@
         
         if ([[self nodeAtPoint:location] isKindOfClass:[Joystick class]])
         {
-            _joystickTouch = touch;
+            _stick.touch = touch;
         }
     }
 }
@@ -54,9 +55,9 @@
 {
 	for (UITouch *touch in touches)
     {
-        if ([touch isEqual:_joystickTouch])
+        if ([touch isEqual:_stick.touch])
         {
-            [_stick updatePositionForTouch:touch];
+            [_player updateVelocity:[_stick updateJoystick]];
         }
     }
 }
@@ -65,15 +66,16 @@
 {
     for (UITouch *touch in touches)
     {
-        if ([touch isEqual:_joystickTouch])
+        if ([touch isEqual:_stick.touch])
         {
             [_stick released];
         }
     }
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
+-(void)update:(CFTimeInterval)currentTime
+{
+    
 }
 
 -(void)resetGame
@@ -86,8 +88,14 @@
     [[Zombie alloc] initZombieForParent:self];
     [[Zombie alloc] initZombieForParent:self];
     [[Zombie alloc] initZombieForParent:self];
+    [[Zombie alloc] initZombieForParent:self];
+    [[Zombie alloc] initZombieForParent:self];
+    [[Zombie alloc] initZombieForParent:self];
+    [[Zombie alloc] initZombieForParent:self];
+    [[Zombie alloc] initZombieForParent:self];
+    [[Zombie alloc] initZombieForParent:self];
     
-    [[Player alloc] initPlayerForParent:self];
+    _player = [[Player alloc] initPlayerForParent:self];
 }
 
 @end

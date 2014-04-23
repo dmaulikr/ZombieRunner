@@ -8,6 +8,8 @@
 
 #import "Player.h"
 
+#define VELOCITY 85
+
 @implementation Player
 
 -(instancetype)initPlayerForParent:(SKScene *)parent
@@ -18,6 +20,7 @@
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
+    self.physicsBody.linearDamping = 0;
     [parent addChild:self];
     
     return self;
@@ -34,9 +37,12 @@
     int randomX = (arc4random() % (int)floorf(xRange)) + minX;
     int randomY = (arc4random() % (int)floorf(yRange)) + minY;
     
-    NSLog(@"Point: %d, %d", randomX, randomY);
-    
     return CGPointMake(randomX, randomY);
+}
+
+-(void)updateVelocity:(CGVector)velocity
+{
+    self.physicsBody.velocity = CGVectorMake(velocity.dx * VELOCITY, velocity.dy * VELOCITY);
 }
 
 @end

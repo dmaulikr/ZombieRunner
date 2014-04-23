@@ -9,6 +9,8 @@
 #import "JoystickItem.h"
 #import "Joystick.h"
 
+#define RADIUS 24
+
 @interface JoystickItem()
 
 @property (strong, nonatomic) Joystick *joystick;
@@ -16,6 +18,8 @@
 @end
 
 @implementation JoystickItem
+
+@synthesize touch = _touch;
 
 -(instancetype)initJoystickItemForParent:(SKScene *)parent
 {
@@ -30,24 +34,32 @@
     return self;
 }
 
--(void)updatePositionForTouch:(UITouch*)touch
+-(CGVector)updateJoystick
 {
-    CGPoint location = [touch locationInNode:self.parent];
+    CGPoint location = [_touch locationInNode:self.parent];
     
     float diffX = location.x - self.position.x;
     float diffY = location.y - self.position.y;
     
     float dist = sqrtf(diffX * diffX + diffY * diffY);
     
-    float posX = diffX * 24 / dist;
-    float posY = diffY * 24 / dist;
+    if (dist == 0)
+    {
+        dist = 1;
+    }
     
-    _joystick.position = CGPointMake(posX, posY);
+    float facX = diffX / dist;
+    float facY = diffY / dist;
+    
+    _joystick.position = CGPointMake(facX * 24, facY * 24);
+    
+    return CGVectorMake(facX, facY);
 }
 
 -(void)released
 {
     _joystick.position = CGPointMake(0, 0);
+    _touch = nil;
 }
 
 
