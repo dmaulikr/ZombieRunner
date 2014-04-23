@@ -12,10 +12,12 @@
 
 -(instancetype)initZombieForParent:(SKScene*)parent
 {
-    self = [super initWithColor:[UIColor colorWithRed:0.1 green:.7 blue:0.1 alpha:1] size:CGSizeMake(12, 12)];
+    //self = [super initWithColor:[UIColor colorWithRed:0.1 green:.7 blue:0.1 alpha:1] size:CGSizeMake(12, 12)];
+    
+    self = [super initWithImageNamed:@"zombie.png"];
     
     self.position = [self randomPointWithinContainerSize:parent.size forViewSize:self.size];
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
+    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
     [parent addChild:self];

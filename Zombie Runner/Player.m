@@ -12,10 +12,10 @@
 
 -(instancetype)initPlayerForParent:(SKScene *)parent
 {
-    self = [super initWithColor:[UIColor blackColor] size:CGSizeMake(12, 12)];
+    self = [super initWithImageNamed:@"player.png"];
     
     self.position = [self randomPointWithinContainerSize:parent.size forViewSize:self.size];
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
+    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
     [parent addChild:self];

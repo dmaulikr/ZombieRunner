@@ -8,6 +8,16 @@
 #import "MyScene.h"
 #import "Zombie.h"
 #import "Player.h"
+#import "JoystickItem.h"
+#import "Joystick.h"
+
+@interface MyScene()
+
+@property (strong, nonatomic) JoystickItem *stick;
+@property (weak, nonatomic) UITouch *joystickTouch;
+
+@end
+
 
 @implementation MyScene
 
@@ -18,25 +28,47 @@
         self.backgroundColor = [SKColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
         
         [self resetGame];
+        
+        _stick = [[JoystickItem alloc] initJoystickItemForParent:self];
+
     }
     return self;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
+    for (UITouch *touch in touches)
+    {
         CGPoint location = [touch locationInNode:self];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+        if ([[self nodeAtPoint:location] isKindOfClass:[Joystick class]])
+        {
+            _joystickTouch = touch;
+        }
+    }
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	for (UITouch *touch in touches)
+    {
+        if ([touch isEqual:_joystickTouch])
+        {
+            [_stick updatePositionForTouch:touch];
+        }
+    }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *touch in touches)
+    {
+        if ([touch isEqual:_joystickTouch])
+        {
+            [_stick released];
+        }
     }
 }
 

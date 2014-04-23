@@ -26,6 +26,12 @@
 		0473E42D190857030096BE76 /* Zombie_RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473E42C190857030096BE76 /* Zombie_RunnerTests.m */; };
 		0473E438190857210096BE76 /* Zombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473E437190857210096BE76 /* Zombie.m */; };
 		047632ED19085F48005DC1C8 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 047632EC19085F48005DC1C8 /* Player.m */; };
+		047632F019086920005DC1C8 /* Joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = 047632EF19086920005DC1C8 /* Joystick.m */; };
+		047632F319086A85005DC1C8 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632F119086A85005DC1C8 /* player.png */; };
+		047632F419086A85005DC1C8 /* zombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632F219086A85005DC1C8 /* zombie.png */; };
+		047632FB19086E72005DC1C8 /* joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632F919086E72005DC1C8 /* joystick.png */; };
+		047632FC19086E72005DC1C8 /* joystickbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632FA19086E72005DC1C8 /* joystickbg.png */; };
+		0476330019087541005DC1C8 /* JoystickItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 047632FF19087541005DC1C8 /* JoystickItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +72,14 @@
 		0473E437190857210096BE76 /* Zombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zombie.m; sourceTree = "<group>"; };
 		047632EB19085F48005DC1C8 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		047632EC19085F48005DC1C8 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		047632EE19086920005DC1C8 /* Joystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joystick.h; sourceTree = "<group>"; };
+		047632EF19086920005DC1C8 /* Joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Joystick.m; sourceTree = "<group>"; };
+		047632F119086A85005DC1C8 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player.png; path = Graphics/player.png; sourceTree = SOURCE_ROOT; };
+		047632F219086A85005DC1C8 /* zombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zombie.png; path = Graphics/zombie.png; sourceTree = SOURCE_ROOT; };
+		047632F919086E72005DC1C8 /* joystick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joystick.png; sourceTree = "<group>"; };
+		047632FA19086E72005DC1C8 /* joystickbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joystickbg.png; sourceTree = "<group>"; };
+		047632FE19087541005DC1C8 /* JoystickItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoystickItem.h; sourceTree = "<group>"; };
+		047632FF19087541005DC1C8 /* JoystickItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoystickItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +141,7 @@
 		0473E402190857030096BE76 /* Zombie Runner */ = {
 			isa = PBXGroup;
 			children = (
+				047632FD19086E79005DC1C8 /* Graphics */,
 				0473E40B190857030096BE76 /* AppDelegate.h */,
 				0473E40C190857030096BE76 /* AppDelegate.m */,
 				0473E40E190857030096BE76 /* Main.storyboard */,
@@ -141,6 +156,10 @@
 				0473E437190857210096BE76 /* Zombie.m */,
 				047632EB19085F48005DC1C8 /* Player.h */,
 				047632EC19085F48005DC1C8 /* Player.m */,
+				047632EE19086920005DC1C8 /* Joystick.h */,
+				047632EF19086920005DC1C8 /* Joystick.m */,
+				047632FE19087541005DC1C8 /* JoystickItem.h */,
+				047632FF19087541005DC1C8 /* JoystickItem.m */,
 			);
 			path = "Zombie Runner";
 			sourceTree = "<group>";
@@ -172,6 +191,17 @@
 				0473E429190857030096BE76 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		047632FD19086E79005DC1C8 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				047632F919086E72005DC1C8 /* joystick.png */,
+				047632FA19086E72005DC1C8 /* joystickbg.png */,
+				047632F119086A85005DC1C8 /* player.png */,
+				047632F219086A85005DC1C8 /* zombie.png */,
+			);
+			name = Graphics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,9 +281,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0473E407190857030096BE76 /* InfoPlist.strings in Resources */,
+				047632F319086A85005DC1C8 /* player.png in Resources */,
+				047632FC19086E72005DC1C8 /* joystickbg.png in Resources */,
 				0473E41A190857030096BE76 /* Images.xcassets in Resources */,
+				047632F419086A85005DC1C8 /* zombie.png in Resources */,
 				0473E418190857030096BE76 /* Spaceship.png in Resources */,
 				0473E410190857030096BE76 /* Main.storyboard in Resources */,
+				047632FB19086E72005DC1C8 /* joystick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +306,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0476330019087541005DC1C8 /* JoystickItem.m in Sources */,
+				047632F019086920005DC1C8 /* Joystick.m in Sources */,
 				0473E416190857030096BE76 /* MyScene.m in Sources */,
 				0473E413190857030096BE76 /* ViewController.m in Sources */,
 				0473E40D190857030096BE76 /* AppDelegate.m in Sources */,
