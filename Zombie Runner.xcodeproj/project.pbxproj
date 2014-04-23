@@ -25,6 +25,7 @@
 		0473E42B190857030096BE76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0473E429190857030096BE76 /* InfoPlist.strings */; };
 		0473E42D190857030096BE76 /* Zombie_RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473E42C190857030096BE76 /* Zombie_RunnerTests.m */; };
 		0473E438190857210096BE76 /* Zombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473E437190857210096BE76 /* Zombie.m */; };
+		047632ED19085F48005DC1C8 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 047632EC19085F48005DC1C8 /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		0473E42C190857030096BE76 /* Zombie_RunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Zombie_RunnerTests.m; sourceTree = "<group>"; };
 		0473E436190857210096BE76 /* Zombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zombie.h; sourceTree = "<group>"; };
 		0473E437190857210096BE76 /* Zombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zombie.m; sourceTree = "<group>"; };
+		047632EB19085F48005DC1C8 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		047632EC19085F48005DC1C8 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 				0473E403190857030096BE76 /* Supporting Files */,
 				0473E436190857210096BE76 /* Zombie.h */,
 				0473E437190857210096BE76 /* Zombie.m */,
+				047632EB19085F48005DC1C8 /* Player.h */,
+				047632EC19085F48005DC1C8 /* Player.m */,
 			);
 			path = "Zombie Runner";
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				0473E413190857030096BE76 /* ViewController.m in Sources */,
 				0473E40D190857030096BE76 /* AppDelegate.m in Sources */,
 				0473E409190857030096BE76 /* main.m in Sources */,
+				047632ED19085F48005DC1C8 /* Player.m in Sources */,
 				0473E438190857210096BE76 /* Zombie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +486,7 @@
 				0473E432190857030096BE76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0473E433190857030096BE76 /* Build configuration list for PBXNativeTarget "Zombie RunnerTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +495,7 @@
 				0473E435190857030096BE76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

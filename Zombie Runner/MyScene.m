@@ -8,6 +8,7 @@
 
 #import "MyScene.h"
 #import "Zombie.h"
+#import "Player.h"
 
 @implementation MyScene
 
@@ -27,6 +28,8 @@
         [[Zombie alloc] initZombieForParent:self];
         [[Zombie alloc] initZombieForParent:self];
         [[Zombie alloc] initZombieForParent:self];
+        
+        [[Player alloc] initPlayerForParent:self];
         
         [self addChild:myLabel];
     }
