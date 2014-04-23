@@ -24,6 +24,7 @@
 		0473E423190857030096BE76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0473E3FE190857030096BE76 /* UIKit.framework */; };
 		0473E42B190857030096BE76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0473E429190857030096BE76 /* InfoPlist.strings */; };
 		0473E42D190857030096BE76 /* Zombie_RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473E42C190857030096BE76 /* Zombie_RunnerTests.m */; };
+		0473E438190857210096BE76 /* Zombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473E437190857210096BE76 /* Zombie.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		0473E428190857030096BE76 /* Zombie RunnerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Zombie RunnerTests-Info.plist"; sourceTree = "<group>"; };
 		0473E42A190857030096BE76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0473E42C190857030096BE76 /* Zombie_RunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Zombie_RunnerTests.m; sourceTree = "<group>"; };
+		0473E436190857210096BE76 /* Zombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zombie.h; sourceTree = "<group>"; };
+		0473E437190857210096BE76 /* Zombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zombie.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				0473E417190857030096BE76 /* Spaceship.png */,
 				0473E419190857030096BE76 /* Images.xcassets */,
 				0473E403190857030096BE76 /* Supporting Files */,
+				0473E436190857210096BE76 /* Zombie.h */,
+				0473E437190857210096BE76 /* Zombie.m */,
 			);
 			path = "Zombie Runner";
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				0473E413190857030096BE76 /* ViewController.m in Sources */,
 				0473E40D190857030096BE76 /* AppDelegate.m in Sources */,
 				0473E409190857030096BE76 /* main.m in Sources */,
+				0473E438190857210096BE76 /* Zombie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
