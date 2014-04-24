@@ -7,9 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Player.h"
 
 @interface Zombie : SKSpriteNode
 
 -(instancetype)initZombieForParent:(SKScene*)parent;
+-(void)updateVelocityTowardPlayer:(Player*)player;
 
 @end

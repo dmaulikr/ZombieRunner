@@ -8,6 +8,8 @@
 
 #import "Zombie.h"
 
+#define VELOCITY 80
+
 @implementation Zombie
 
 -(instancetype)initZombieForParent:(SKScene*)parent
@@ -37,6 +39,24 @@
     int randomY = (arc4random() % (int)floorf(yRange)) + minY;
     
     return CGPointMake(randomX, randomY);
+}
+
+-(void)updateVelocityTowardPlayer:(Player *)player
+{
+    float diffX = player.position.x - self.position.x;
+    float diffY = player.position.y - self.position.y;
+    
+    float dist = sqrtf(diffX * diffX + diffY * diffY);
+    
+    if (dist == 0)
+    {
+        dist = 1;
+    }
+    
+    float facX = diffX / dist;
+    float facY = diffY / dist;
+    
+    self.physicsBody.velocity = CGVectorMake(facX * VELOCITY, facY * VELOCITY);
 }
 
 @end

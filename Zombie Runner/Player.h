@@ -12,6 +12,7 @@
 
 -(instancetype)initPlayerForParent:(SKScene*)parent;
 -(void)updateVelocity:(CGVector)velocity;
+-(BOOL)checkContactedBodiesForDeath;
 
 
 @end

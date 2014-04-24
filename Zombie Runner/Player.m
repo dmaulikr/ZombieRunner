@@ -7,8 +7,9 @@
 //
 
 #import "Player.h"
+#import "Zombie.h"
 
-#define VELOCITY 85
+#define VELOCITY 84
 
 @implementation Player
 
@@ -43,6 +44,19 @@
 -(void)updateVelocity:(CGVector)velocity
 {
     self.physicsBody.velocity = CGVectorMake(velocity.dx * VELOCITY, velocity.dy * VELOCITY);
+}
+
+-(BOOL)checkContactedBodiesForDeath
+{
+    for (SKPhysicsBody *body in [self.physicsBody allContactedBodies])
+    {
+        if ([body.node isKindOfClass:[Zombie class]])
+        {
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 @end
