@@ -31,6 +31,7 @@
 		047632FB19086E72005DC1C8 /* joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632F919086E72005DC1C8 /* joystick.png */; };
 		047632FC19086E72005DC1C8 /* joystickbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632FA19086E72005DC1C8 /* joystickbg.png */; };
 		0476330019087541005DC1C8 /* JoystickItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 047632FF19087541005DC1C8 /* JoystickItem.m */; };
+		04E37D59190C74420073DBF4 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37D58190C74420073DBF4 /* Bullet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		047632FA19086E72005DC1C8 /* joystickbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joystickbg.png; sourceTree = "<group>"; };
 		047632FE19087541005DC1C8 /* JoystickItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoystickItem.h; sourceTree = "<group>"; };
 		047632FF19087541005DC1C8 /* JoystickItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoystickItem.m; sourceTree = "<group>"; };
+		04E37D57190C74420073DBF4 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		04E37D58190C74420073DBF4 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 				047632EF19086920005DC1C8 /* Joystick.m */,
 				047632FE19087541005DC1C8 /* JoystickItem.h */,
 				047632FF19087541005DC1C8 /* JoystickItem.m */,
+				04E37D57190C74420073DBF4 /* Bullet.h */,
+				04E37D58190C74420073DBF4 /* Bullet.m */,
 			);
 			path = "Zombie Runner";
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 				0473E416190857030096BE76 /* MyScene.m in Sources */,
 				0473E413190857030096BE76 /* ViewController.m in Sources */,
 				0473E40D190857030096BE76 /* AppDelegate.m in Sources */,
+				04E37D59190C74420073DBF4 /* Bullet.m in Sources */,
 				0473E409190857030096BE76 /* main.m in Sources */,
 				047632ED19085F48005DC1C8 /* Player.m in Sources */,
 				0473E438190857210096BE76 /* Zombie.m in Sources */,

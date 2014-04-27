@@ -9,7 +9,14 @@
 #import "Player.h"
 #import "Zombie.h"
 
-#define VELOCITY 84
+#define VELOCITY 100
+
+typedef NS_OPTIONS(uint32_t, CollisionCategory)
+{
+    CollisionCategoryPlayer = 0x1 << 0,
+    CollisionCategoryBullet = 0x1 << 1,
+    CollisionCategoryZombie = 0x1 << 2,
+};
 
 @implementation Player
 
@@ -22,6 +29,9 @@
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
     self.physicsBody.linearDamping = 0;
+    
+    
+    
     [parent addChild:self];
     
     return self;

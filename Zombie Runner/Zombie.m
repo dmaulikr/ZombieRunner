@@ -8,7 +8,14 @@
 
 #import "Zombie.h"
 
-#define VELOCITY 80
+#define VELOCITY 45
+
+typedef NS_OPTIONS(uint32_t, CollisionCategory)
+{
+    CollisionCategoryPlayer = 0x1 << 0,
+    CollisionCategoryBullet = 0x1 << 1,
+    CollisionCategoryZombie = 0x1 << 2,
+};
 
 @implementation Zombie
 
@@ -22,6 +29,7 @@
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
+    [self setRandomVelocity];
     [parent addChild:self];
     
     return self;
@@ -53,10 +61,69 @@
         dist = 1;
     }
     
-    float facX = diffX / dist;
-    float facY = diffY / dist;
+    float facX = 0;
+    float facY = 0;
+    
+    if (dist < 150)
+    {
+        facX = 2 * diffX / dist;
+        facY = 2 * diffY / dist;
+    }
+    else
+    {
+        float velX;
+        if (self.physicsBody.velocity.dx != 0)
+        {
+            velX = self.physicsBody.velocity.dx;
+        }
+        else
+        {
+            velX = .000001;
+        }
+        float velY = self.physicsBody.velocity.dy;
+        
+        float angle = atan(fabsf(velY/velX));
+        
+        float ranFac = ((rand()%19)/10 - .9);
+        
+        angle += ranFac;
+        
+        facX = cosf(angle);
+        facY = sinf(angle);
+        
+        if (velX < 0)
+        {
+            facX *= -1;
+        }
+        
+        if (velY < 0)
+        {
+            facY *= -1;
+        }
+        
+        if (angle > M_1_PI/2)
+        {
+            velX *= -1;
+        }
+        else if (angle < 0)
+        {
+            velY *= -1;
+        }
+        
+        
+    }
     
     self.physicsBody.velocity = CGVectorMake(facX * VELOCITY, facY * VELOCITY);
+}
+
+-(void)setRandomVelocity
+{
+    float angle = arc4random() * M_2_PI;
+    
+    float facX = VELOCITY * cosf(angle);
+    float facY = VELOCITY * sinf(angle);
+    
+    self.physicsBody.velocity = CGVectorMake(facX, facY);
 }
 
 @end
