@@ -13,6 +13,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     CollisionCategoryPlayer = 0x1 << 0,
     CollisionCategoryBullet = 0x1 << 1,
     CollisionCategoryZombie = 0x1 << 2,
+    CollisionCategoryAmmo = 0x1 << 3
 };
 
 @implementation Bullet
@@ -40,6 +41,9 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     self.physicsBody.allowsRotation = false;
     self.physicsBody.linearDamping = 0;
     self.physicsBody.velocity = velocity;
+    self.physicsBody.categoryBitMask = CollisionCategoryBullet;
+    self.physicsBody.contactTestBitMask = CollisionCategoryZombie | CollisionCategoryAmmo;
+    self.physicsBody.usesPreciseCollisionDetection = YES;
     [parent addChild:self];
     
     return self;

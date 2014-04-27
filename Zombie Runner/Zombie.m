@@ -8,13 +8,14 @@
 
 #import "Zombie.h"
 
-#define VELOCITY 45
+#define VELOCITY 57
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
     CollisionCategoryPlayer = 0x1 << 0,
     CollisionCategoryBullet = 0x1 << 1,
     CollisionCategoryZombie = 0x1 << 2,
+    CollisionCategoryAmmo = 0x1 << 3
 };
 
 @implementation Zombie
@@ -29,6 +30,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
+    self.physicsBody.categoryBitMask = CollisionCategoryZombie;
     [self setRandomVelocity];
     [parent addChild:self];
     

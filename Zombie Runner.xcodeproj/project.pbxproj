@@ -32,6 +32,7 @@
 		047632FC19086E72005DC1C8 /* joystickbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632FA19086E72005DC1C8 /* joystickbg.png */; };
 		0476330019087541005DC1C8 /* JoystickItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 047632FF19087541005DC1C8 /* JoystickItem.m */; };
 		04E37D59190C74420073DBF4 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37D58190C74420073DBF4 /* Bullet.m */; };
+		04E37DA4190CE9150073DBF4 /* Ammo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37DA3190CE9150073DBF4 /* Ammo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		047632FF19087541005DC1C8 /* JoystickItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoystickItem.m; sourceTree = "<group>"; };
 		04E37D57190C74420073DBF4 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		04E37D58190C74420073DBF4 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
+		04E37DA2190CE9150073DBF4 /* Ammo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ammo.h; sourceTree = "<group>"; };
+		04E37DA3190CE9150073DBF4 /* Ammo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ammo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 				047632FF19087541005DC1C8 /* JoystickItem.m */,
 				04E37D57190C74420073DBF4 /* Bullet.h */,
 				04E37D58190C74420073DBF4 /* Bullet.m */,
+				04E37DA2190CE9150073DBF4 /* Ammo.h */,
+				04E37DA3190CE9150073DBF4 /* Ammo.m */,
 			);
 			path = "Zombie Runner";
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				0473E416190857030096BE76 /* MyScene.m in Sources */,
 				0473E413190857030096BE76 /* ViewController.m in Sources */,
 				0473E40D190857030096BE76 /* AppDelegate.m in Sources */,
+				04E37DA4190CE9150073DBF4 /* Ammo.m in Sources */,
 				04E37D59190C74420073DBF4 /* Bullet.m in Sources */,
 				0473E409190857030096BE76 /* main.m in Sources */,
 				047632ED19085F48005DC1C8 /* Player.m in Sources */,

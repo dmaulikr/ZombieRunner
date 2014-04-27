@@ -1,17 +1,12 @@
 //
-//  Player.m
+//  Ammo.m
 //  Zombie Runner
 //
-//  Created by Corey Matzat on 4/23/14.
+//  Created by Corey Matzat on 4/27/14.
 //  Copyright (c) 2014 Corey Matzat. All rights reserved.
 //
 
-#import "Player.h"
-#import "Zombie.h"
-
-#define VELOCITY 120
-
-@implementation Player
+#import "Ammo.h"
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
@@ -21,20 +16,18 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     CollisionCategoryAmmo = 0x1 << 3
 };
 
--(instancetype)initPlayerForParent:(SKScene *)parent
+@implementation Ammo
+
+-(instancetype)initAmmoForParent:(SKScene *)parent
 {
-    self = [super initWithImageNamed:@"player.png"];
+    self = [super initWithColor:[UIColor blueColor] size:CGSizeMake(16, 16)];
     
     self.position = [self randomPointWithinContainerSize:parent.size forViewSize:self.size];
-    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
-    self.physicsBody.categoryBitMask = CollisionCategoryPlayer;
-    self.physicsBody.contactTestBitMask = CollisionCategoryZombie | CollisionCategoryAmmo;
-    self.physicsBody.usesPreciseCollisionDetection = YES;
-    self.physicsBody.linearDamping = 0;
-    
-    
+    self.physicsBody.categoryBitMask = CollisionCategoryAmmo;
+    self.physicsBody.dynamic = false;
     
     [parent addChild:self];
     
@@ -53,24 +46,6 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     int randomY = (arc4random() % (int)floorf(yRange)) + minY;
     
     return CGPointMake(randomX, randomY);
-}
-
--(void)updateVelocity:(CGVector)velocity
-{
-    self.physicsBody.velocity = CGVectorMake(velocity.dx * VELOCITY, velocity.dy * VELOCITY);
-}
-
--(BOOL)checkContactedBodiesForDeath
-{
-    for (SKPhysicsBody *body in [self.physicsBody allContactedBodies])
-    {
-        if ([body.node isKindOfClass:[Zombie class]])
-        {
-            return true;
-        }
-    }
-    
-    return false;
 }
 
 @end
