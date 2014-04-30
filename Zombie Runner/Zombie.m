@@ -20,13 +20,13 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 
 @implementation Zombie
 
--(instancetype)initZombieForParent:(SKScene*)parent
+-(instancetype)initZombieForParent:(SKScene*)parent andAvoidPlayer:(Player *)player
 {
     //self = [super initWithColor:[UIColor colorWithRed:0.1 green:.7 blue:0.1 alpha:1] size:CGSizeMake(12, 12)];
     
     self = [super initWithImageNamed:@"zombie.png"];
     
-    self.position = [self randomPointWithinContainerSize:parent.size forViewSize:self.size];
+    self.position = [self randomPointWithinContainerSize:parent.size forViewSize:self.size andAvoidPlayer:player];
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
@@ -37,16 +37,29 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     return self;
 }
 
-- (CGPoint) randomPointWithinContainerSize:(CGSize)containerSize forViewSize:(CGSize)size
+- (CGPoint) randomPointWithinContainerSize:(CGSize)containerSize forViewSize:(CGSize)size andAvoidPlayer:(Player*)player
 {
-    CGFloat xRange = containerSize.width - size.width;
-    CGFloat yRange = containerSize.height - size.height;
+    int randomX;
+    int randomY;
     
-    CGFloat minX = (containerSize.width - xRange) / 2;
-    CGFloat minY = (containerSize.height - yRange) / 2;
+    float dist = 0;
     
-    int randomX = (arc4random() % (int)floorf(xRange)) + minX;
-    int randomY = (arc4random() % (int)floorf(yRange)) + minY;
+    do
+    {
+        CGFloat xRange = containerSize.width - size.width;
+        CGFloat yRange = containerSize.height - size.height;
+    
+        CGFloat minX = (containerSize.width - xRange) / 2;
+        CGFloat minY = (containerSize.height - yRange) / 2;
+    
+        randomX = (arc4random() % (int)floorf(xRange)) + minX;
+        randomY = (arc4random() % (int)floorf(yRange)) + minY;
+        
+        float diffX = (randomX - player.position.x);
+        float diffY = (randomY - player.position.y);
+        
+        dist = sqrtf(diffX*diffX+diffY*diffY);
+    } while (dist < 150);
     
     return CGPointMake(randomX, randomY);
 }

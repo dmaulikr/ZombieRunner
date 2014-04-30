@@ -238,7 +238,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     _gameInProgress = false;
     _playerIsAlive = false;
     
-    NSString *message = [NSString stringWithFormat:@"You've been caught by zombies!\nYour score is %d.", _score];
+    NSString *message = [NSString stringWithFormat:@"You've been caught by zombies!\nYour score is %lu.", (unsigned long)_score];
     UIAlertView *deathAlert = [[UIAlertView alloc] initWithTitle:@"DEAD!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [deathAlert show];
         
@@ -258,7 +258,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
     if (_ammoCount > 0)
     {
-        _ammoLabel.text = [NSString stringWithFormat:@"Ammo: %2.0d", _ammoCount];
+        _ammoLabel.text = [NSString stringWithFormat:@"Ammo: %2.0ld", (long)_ammoCount];
     }
     else
     {
@@ -270,7 +270,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
     if (_score > 0)
     {
-        _scoreLabel.text = [NSString stringWithFormat:@"Score: %4.0d", _score];
+        _scoreLabel.text = [NSString stringWithFormat:@"Score: %4.0lu", (unsigned long)_score];
     }
     else
     {
@@ -282,7 +282,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
     if (_playerIsAlive)
     {
-        Zombie *zombie = [[Zombie alloc] initZombieForParent:self];
+        Zombie *zombie = [[Zombie alloc] initZombieForParent:self andAvoidPlayer:_player];
         [_zombies addObject:zombie];
         _score++;
         [self updateScoreLabelText];
