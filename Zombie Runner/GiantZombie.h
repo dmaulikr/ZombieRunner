@@ -11,7 +11,6 @@
 @interface GiantZombie : Zombie
 
 -(instancetype)initGiantZombieForParent:(SKScene*)parent andAvoidPlayer:(Player*)player;
--(void)updateVelocityTowardPlayer:(Player*)player;
 -(NSMutableArray*)spawnBabyZombiesInScene:(SKScene*)scene;
 
 @end

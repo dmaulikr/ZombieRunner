@@ -33,6 +33,8 @@
 		047632FB19086E72005DC1C8 /* joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632F919086E72005DC1C8 /* joystick.png */; };
 		047632FC19086E72005DC1C8 /* joystickbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 047632FA19086E72005DC1C8 /* joystickbg.png */; };
 		0476330019087541005DC1C8 /* JoystickItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 047632FF19087541005DC1C8 /* JoystickItem.m */; };
+		04D13DB61912935300B6BF70 /* SmartZombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D13DB51912935300B6BF70 /* SmartZombie.m */; };
+		04D13DB8191296C300B6BF70 /* smartzombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D13DB7191296C300B6BF70 /* smartzombie.png */; };
 		04E37D59190C74420073DBF4 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37D58190C74420073DBF4 /* Bullet.m */; };
 		04E37DA4190CE9150073DBF4 /* Ammo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37DA3190CE9150073DBF4 /* Ammo.m */; };
 /* End PBXBuildFile section */
@@ -85,6 +87,9 @@
 		047632FA19086E72005DC1C8 /* joystickbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joystickbg.png; sourceTree = "<group>"; };
 		047632FE19087541005DC1C8 /* JoystickItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoystickItem.h; sourceTree = "<group>"; };
 		047632FF19087541005DC1C8 /* JoystickItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoystickItem.m; sourceTree = "<group>"; };
+		04D13DB41912935300B6BF70 /* SmartZombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartZombie.h; sourceTree = "<group>"; };
+		04D13DB51912935300B6BF70 /* SmartZombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartZombie.m; sourceTree = "<group>"; };
+		04D13DB7191296C300B6BF70 /* smartzombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smartzombie.png; path = Graphics/smartzombie.png; sourceTree = SOURCE_ROOT; };
 		04E37D57190C74420073DBF4 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		04E37D58190C74420073DBF4 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
 		04E37DA2190CE9150073DBF4 /* Ammo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ammo.h; sourceTree = "<group>"; };
@@ -174,6 +179,8 @@
 				04E37D58190C74420073DBF4 /* Bullet.m */,
 				04E37DA2190CE9150073DBF4 /* Ammo.h */,
 				04E37DA3190CE9150073DBF4 /* Ammo.m */,
+				04D13DB41912935300B6BF70 /* SmartZombie.h */,
+				04D13DB51912935300B6BF70 /* SmartZombie.m */,
 			);
 			path = "Zombie Runner";
 			sourceTree = "<group>";
@@ -210,6 +217,7 @@
 		047632FD19086E79005DC1C8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				04D13DB7191296C300B6BF70 /* smartzombie.png */,
 				043686151911DA7600B31C32 /* giantzombie.png */,
 				047632F919086E72005DC1C8 /* joystick.png */,
 				047632FA19086E72005DC1C8 /* joystickbg.png */,
@@ -301,6 +309,7 @@
 				043686161911DA7600B31C32 /* giantzombie.png in Resources */,
 				0473E41A190857030096BE76 /* Images.xcassets in Resources */,
 				047632F419086A85005DC1C8 /* zombie.png in Resources */,
+				04D13DB8191296C300B6BF70 /* smartzombie.png in Resources */,
 				0473E410190857030096BE76 /* Main.storyboard in Resources */,
 				047632FB19086E72005DC1C8 /* joystick.png in Resources */,
 			);
@@ -326,6 +335,7 @@
 				047632F019086920005DC1C8 /* Joystick.m in Sources */,
 				0473E416190857030096BE76 /* MyScene.m in Sources */,
 				0473E413190857030096BE76 /* ViewController.m in Sources */,
+				04D13DB61912935300B6BF70 /* SmartZombie.m in Sources */,
 				0473E40D190857030096BE76 /* AppDelegate.m in Sources */,
 				04E37DA4190CE9150073DBF4 /* Ammo.m in Sources */,
 				04E37D59190C74420073DBF4 /* Bullet.m in Sources */,

@@ -13,6 +13,7 @@
 #import "Bullet.h"
 #import "Ammo.h"
 #import "GiantZombie.h"
+#import "SmartZombie.h"
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
@@ -30,7 +31,8 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 @property (strong, nonatomic) NSMutableArray *ammoBoxes;
 @property (strong, nonatomic) Bullet *bullet;
 @property (strong, nonatomic) NSTimer *zombieSpawnTimer;
-@property (strong, nonatomic) NSTimer *zombieSpawnTimer2;
+@property (strong, nonatomic) NSTimer *giantZombieSpawnTimer;
+@property (strong, nonatomic) NSTimer *smartZombieSpawnTimer;
 @property (strong, nonatomic) NSTimer *zombieVelocityTimer;
 @property (strong, nonatomic) NSTimer *ammoTimer;
 @property (nonatomic) CFTimeInterval touchTime;
@@ -60,9 +62,10 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
         _stick = [[JoystickItem alloc] initJoystickItemForParent:self];
         
         _zombieSpawnTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0 target: self selector: @selector(addZombie) userInfo: nil repeats: YES];
-        _zombieSpawnTimer2 = [NSTimer scheduledTimerWithTimeInterval: 7.0 target: self selector: @selector(addGiantZombie) userInfo: nil repeats: YES];
+        _smartZombieSpawnTimer = [NSTimer scheduledTimerWithTimeInterval: 13.0 target: self selector: @selector(addSmartZombie) userInfo: nil repeats: YES];
+        _giantZombieSpawnTimer = [NSTimer scheduledTimerWithTimeInterval: 9.0 target: self selector: @selector(addGiantZombie) userInfo: nil repeats: YES];
         _zombieVelocityTimer = [NSTimer scheduledTimerWithTimeInterval: 0.3 target: self selector: @selector(updateZombieVelocity) userInfo: nil repeats: YES];
-        _ammoTimer = [NSTimer scheduledTimerWithTimeInterval: 12 target: self selector: @selector(updateAmmo) userInfo: nil repeats: YES];
+        _ammoTimer = [NSTimer scheduledTimerWithTimeInterval: 10 target: self selector: @selector(updateAmmo) userInfo: nil repeats: YES];
         
         _ammoLabel = [[SKLabelNode alloc] initWithFontNamed:@"Helvetica"];
         _ammoLabel.fontSize = 18;
@@ -94,7 +97,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
         {
             [_ammoBoxes removeObject:(Ammo*)contactNode];
             [contactNode removeFromParent];
-            _ammoCount += 5;
+            _ammoCount += 8;
             [self updateAmmoLabelText];
         }
     }
@@ -103,23 +106,29 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
         SKNode *contactNode = (contact.bodyA.node != _bullet) ? contact.bodyA.node : contact.bodyB.node;
         if ([contactNode isKindOfClass:[Zombie class]])
         {
-            if ([contactNode isKindOfClass:[GiantZombie class]])
-            {
-                NSMutableArray *newZoms = [(GiantZombie*)contactNode spawnBabyZombiesInScene:self];
-                
-                _score += 5;
-                for (Zombie *zombie in newZoms)
-                {
-                    [_zombies addObject:zombie];
-                }
-                
-            }
-            [_zombies removeObject:contactNode];
-            [contactNode removeFromParent];
+            Zombie *zombie = (Zombie*)contactNode;
+            zombie.health -= 20;
             [_bullet removeFromParent];
             _bullet = nil;
-            _score += 5;
-            [self updateScoreLabelText];
+            
+            if (zombie.health <= 0)
+            {
+                if ([contactNode isKindOfClass:[GiantZombie class]])
+                {
+                    NSMutableArray *newZoms = [(GiantZombie*)contactNode spawnBabyZombiesInScene:self];
+                
+                    _score += 5;
+                    for (Zombie *zombie in newZoms)
+                    {
+                        [_zombies addObject:zombie];
+                    }
+                
+                }
+                [_zombies removeObject:contactNode];
+                [contactNode removeFromParent];
+                _score += 5;
+                [self updateScoreLabelText];
+            }
         }
         else if ([contactNode isKindOfClass:[Ammo class]])
         {
@@ -239,7 +248,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     [self addZombies:20];
     
     _score = 0;
-    _ammoCount = 5;
+    _ammoCount = 16;
     
     [self updateAmmoLabelText];
     [self updateScoreLabelText];
@@ -295,6 +304,17 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     if (_playerIsAlive)
     {
         Zombie *zombie = [[Zombie alloc] initZombieForParent:self andAvoidPlayer:_player];
+        [_zombies addObject:zombie];
+        _score++;
+        [self updateScoreLabelText];
+    }
+}
+
+-(void)addSmartZombie
+{
+    if (_playerIsAlive)
+    {
+        SmartZombie *zombie = [[SmartZombie alloc] initSmartZombieForParent:self andAvoidPlayer:_player];
         [_zombies addObject:zombie];
         _score++;
         [self updateScoreLabelText];

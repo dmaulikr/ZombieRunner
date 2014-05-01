@@ -15,4 +15,6 @@
 -(instancetype)initZombieForParent:(SKScene *)parent atPoint:(CGPoint)location;
 -(void)updateVelocityTowardPlayer:(Player*)player;
 
+@property (nonatomic) int health;
+
 @end

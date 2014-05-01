@@ -28,6 +28,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
+    self.health = 60;
     self.physicsBody.categoryBitMask = CollisionCategoryZombie;
     [self setRandomVelocity];
     [parent addChild:self];
