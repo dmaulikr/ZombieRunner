@@ -12,6 +12,7 @@
 #import "Joystick.h"
 #import "Bullet.h"
 #import "Ammo.h"
+#import "GiantZombie.h"
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
@@ -59,7 +60,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
         _stick = [[JoystickItem alloc] initJoystickItemForParent:self];
         
         _zombieSpawnTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0 target: self selector: @selector(addZombie) userInfo: nil repeats: YES];
-        _zombieSpawnTimer2 = [NSTimer scheduledTimerWithTimeInterval: 7.0 target: self selector: @selector(addZombie) userInfo: nil repeats: YES];
+        _zombieSpawnTimer2 = [NSTimer scheduledTimerWithTimeInterval: 7.0 target: self selector: @selector(addGiantZombie) userInfo: nil repeats: YES];
         _zombieVelocityTimer = [NSTimer scheduledTimerWithTimeInterval: 0.3 target: self selector: @selector(updateZombieVelocity) userInfo: nil repeats: YES];
         _ammoTimer = [NSTimer scheduledTimerWithTimeInterval: 12 target: self selector: @selector(updateAmmo) userInfo: nil repeats: YES];
         
@@ -102,6 +103,17 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
         SKNode *contactNode = (contact.bodyA.node != _bullet) ? contact.bodyA.node : contact.bodyB.node;
         if ([contactNode isKindOfClass:[Zombie class]])
         {
+            if ([contactNode isKindOfClass:[GiantZombie class]])
+            {
+                NSMutableArray *newZoms = [(GiantZombie*)contactNode spawnBabyZombiesInScene:self];
+                
+                _score += 5;
+                for (Zombie *zombie in newZoms)
+                {
+                    [_zombies addObject:zombie];
+                }
+                
+            }
             [_zombies removeObject:contactNode];
             [contactNode removeFromParent];
             [_bullet removeFromParent];
@@ -283,6 +295,17 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     if (_playerIsAlive)
     {
         Zombie *zombie = [[Zombie alloc] initZombieForParent:self andAvoidPlayer:_player];
+        [_zombies addObject:zombie];
+        _score++;
+        [self updateScoreLabelText];
+    }
+}
+
+-(void)addGiantZombie
+{
+    if (_playerIsAlive)
+    {
+        GiantZombie *zombie = [[GiantZombie alloc] initGiantZombieForParent:self andAvoidPlayer:_player];
         [_zombies addObject:zombie];
         _score++;
         [self updateScoreLabelText];

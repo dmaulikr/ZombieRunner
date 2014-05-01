@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043686121911D72900B31C32 /* GiantZombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 043686111911D72900B31C32 /* GiantZombie.m */; };
+		043686161911DA7600B31C32 /* giantzombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 043686151911DA7600B31C32 /* giantzombie.png */; };
 		0473E3FB190857030096BE76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0473E3FA190857030096BE76 /* Foundation.framework */; };
 		0473E3FD190857030096BE76 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0473E3FC190857030096BE76 /* CoreGraphics.framework */; };
 		0473E3FF190857030096BE76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0473E3FE190857030096BE76 /* UIKit.framework */; };
@@ -46,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		043686101911D72900B31C32 /* GiantZombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiantZombie.h; sourceTree = "<group>"; };
+		043686111911D72900B31C32 /* GiantZombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiantZombie.m; sourceTree = "<group>"; };
+		043686151911DA7600B31C32 /* giantzombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = giantzombie.png; path = Graphics/giantzombie.png; sourceTree = SOURCE_ROOT; };
 		0473E3F7190857030096BE76 /* Zombie Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zombie Runner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0473E3FA190857030096BE76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0473E3FC190857030096BE76 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,6 +162,8 @@
 				0473E403190857030096BE76 /* Supporting Files */,
 				0473E436190857210096BE76 /* Zombie.h */,
 				0473E437190857210096BE76 /* Zombie.m */,
+				043686101911D72900B31C32 /* GiantZombie.h */,
+				043686111911D72900B31C32 /* GiantZombie.m */,
 				047632EB19085F48005DC1C8 /* Player.h */,
 				047632EC19085F48005DC1C8 /* Player.m */,
 				047632EE19086920005DC1C8 /* Joystick.h */,
@@ -203,6 +210,7 @@
 		047632FD19086E79005DC1C8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				043686151911DA7600B31C32 /* giantzombie.png */,
 				047632F919086E72005DC1C8 /* joystick.png */,
 				047632FA19086E72005DC1C8 /* joystickbg.png */,
 				047632F119086A85005DC1C8 /* player.png */,
@@ -290,6 +298,7 @@
 				0473E407190857030096BE76 /* InfoPlist.strings in Resources */,
 				047632F319086A85005DC1C8 /* player.png in Resources */,
 				047632FC19086E72005DC1C8 /* joystickbg.png in Resources */,
+				043686161911DA7600B31C32 /* giantzombie.png in Resources */,
 				0473E41A190857030096BE76 /* Images.xcassets in Resources */,
 				047632F419086A85005DC1C8 /* zombie.png in Resources */,
 				0473E410190857030096BE76 /* Main.storyboard in Resources */,
@@ -313,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0476330019087541005DC1C8 /* JoystickItem.m in Sources */,
+				043686121911D72900B31C32 /* GiantZombie.m in Sources */,
 				047632F019086920005DC1C8 /* Joystick.m in Sources */,
 				0473E416190857030096BE76 /* MyScene.m in Sources */,
 				0473E413190857030096BE76 /* ViewController.m in Sources */,

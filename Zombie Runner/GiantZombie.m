@@ -1,14 +1,14 @@
 //
-//  Zombie.m
+//  GiantZombie.m
 //  Zombie Runner
 //
-//  Created by Corey Matzat on 4/23/14.
+//  Created by Corey Matzat on 4/30/14.
 //  Copyright (c) 2014 Corey Matzat. All rights reserved.
 //
 
-#import "Zombie.h"
+#import "GiantZombie.h"
 
-#define VELOCITY 57
+#define VELOCITY 52
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
@@ -18,29 +18,14 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     CollisionCategoryAmmo = 0x1 << 3
 };
 
-@implementation Zombie
+@implementation GiantZombie
 
--(instancetype)initZombieForParent:(SKScene*)parent andAvoidPlayer:(Player *)player
+-(instancetype)initGiantZombieForParent:(SKScene*)parent andAvoidPlayer:(Player *)player
 {
-    self = [super initWithImageNamed:@"zombie.png"];
+    self = [super initWithImageNamed:@"giantzombie.png"];
     
     self.position = [self randomPointWithinContainerSize:parent.size forViewSize:self.size andAvoidPlayer:player];
-    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
-    self.physicsBody.affectedByGravity = false;
-    self.physicsBody.allowsRotation = false;
-    self.physicsBody.categoryBitMask = CollisionCategoryZombie;
-    [self setRandomVelocity];
-    [parent addChild:self];
-    
-    return self;
-}
-
--(instancetype)initZombieForParent:(SKScene *)parent atPoint:(CGPoint)location
-{
-    self = [super initWithImageNamed:@"zombie.png"];
-    
-    self.position = location;
-    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
+    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
     self.physicsBody.categoryBitMask = CollisionCategoryZombie;
@@ -61,10 +46,10 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     {
         CGFloat xRange = containerSize.width - size.width;
         CGFloat yRange = containerSize.height - size.height;
-    
+        
         CGFloat minX = (containerSize.width - xRange) / 2;
         CGFloat minY = (containerSize.height - yRange) / 2;
-    
+        
         randomX = (arc4random() % (int)floorf(xRange)) + minX;
         randomY = (arc4random() % (int)floorf(yRange)) + minY;
         
@@ -75,6 +60,22 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     } while (dist < 150);
     
     return CGPointMake(randomX, randomY);
+}
+
+-(NSMutableArray*)spawnBabyZombiesInScene:(SKScene*)scene
+{
+    NSLog(@"Start");
+    NSMutableArray *zoms = [[NSMutableArray alloc] initWithCapacity:3];
+    
+    for (int i = 0; i < 3; i++)
+    {
+        CGPoint newLoc = CGPointMake(self.position.x + 1, self.position.y - 1 + i);
+        Zombie *zombie = [[Zombie alloc] initZombieForParent:scene atPoint:newLoc];
+        [zoms addObject:zombie];
+    }
+    
+    NSLog(@"Finish");
+    return zoms;
 }
 
 -(void)updateVelocityTowardPlayer:(Player *)player
@@ -92,7 +93,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     float facX = 0;
     float facY = 0;
     
-    if (dist < 150)
+    if (dist < 500)
     {
         facX = 2 * diffX / dist;
         facY = 2 * diffY / dist;
@@ -154,5 +155,5 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     self.physicsBody.velocity = CGVectorMake(facX, facY);
 }
 
-@end
 
+@end

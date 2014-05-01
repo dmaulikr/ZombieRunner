@@ -12,6 +12,7 @@
 @interface Zombie : SKSpriteNode
 
 -(instancetype)initZombieForParent:(SKScene*)parent andAvoidPlayer:(Player*)player;
+-(instancetype)initZombieForParent:(SKScene *)parent atPoint:(CGPoint)location;
 -(void)updateVelocityTowardPlayer:(Player*)player;
 
 @end
