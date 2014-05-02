@@ -7,9 +7,12 @@
 //
 
 #import "Zombie.h"
+#import "Bullet.h"
+#import "Player.h"
 
 @interface ShooterZombie : Zombie
 
 -(instancetype)initShooterZombieForParent:(SKScene*)parent andAvoidPlayer:(Player*)player;
+-(Bullet*)shootPlayer:(Player*)player;
 
 @end

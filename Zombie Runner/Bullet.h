@@ -12,6 +12,6 @@
 
 @interface Bullet : SKSpriteNode
 
--(instancetype)initBulletForParent:(SKScene*)parent atPlayer:(Player*)player withVelocity:(CGVector)velocity;
+-(instancetype)initBulletForParent:(SKScene*)parent atEntity:(SKSpriteNode*)entity withVelocity:(CGVector)velocity;
 
 @end

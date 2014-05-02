@@ -18,12 +18,12 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 
 @implementation Bullet
 
--(instancetype)initBulletForParent:(SKScene*)parent atPlayer:(Player*)player withVelocity:(CGVector)velocity
+-(instancetype)initBulletForParent:(SKScene*)parent atEntity:(SKSpriteNode*)entity withVelocity:(CGVector)velocity
 {
     self = [super initWithColor:[UIColor redColor] size:CGSizeMake(6, 6)];
     
-    int adjX = 6;
-    int adjY = 6;
+    int adjX = 9;
+    int adjY = 9;
     
     if (velocity.dx < 0)
     {
@@ -35,14 +35,14 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
         adjY *= -1;
     }
     
-    self.position = CGPointMake(player.position.x + adjX, player.position.y + adjY);
+    self.position = CGPointMake(entity.position.x + adjX, entity.position.y + adjY);
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
     self.physicsBody.linearDamping = 0;
     self.physicsBody.velocity = velocity;
     self.physicsBody.categoryBitMask = CollisionCategoryBullet;
-    self.physicsBody.contactTestBitMask = CollisionCategoryZombie | CollisionCategoryAmmo;
+    self.physicsBody.contactTestBitMask = CollisionCategoryZombie | CollisionCategoryAmmo | CollisionCategoryPlayer;
     self.physicsBody.usesPreciseCollisionDetection = YES;
     [parent addChild:self];
     

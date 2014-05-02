@@ -14,6 +14,7 @@
 #import "Ammo.h"
 #import "GiantZombie.h"
 #import "SmartZombie.h"
+#import "ShooterZombie.h"
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
@@ -35,11 +36,15 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 @property (strong, nonatomic) NSTimer *giantZombieSpawnTimer;
 @property (strong, nonatomic) NSTimer *smartZombieSpawnTimer;
 @property (strong, nonatomic) NSTimer *zombieVelocityTimer;
+@property (strong, nonatomic) NSTimer *shooterZombieTimer;
+@property (strong, nonatomic) ShooterZombie *shooter;
+@property (strong, nonatomic) Bullet *shooterBullet;
 @property (strong, nonatomic) NSTimer *ammoTimer;
 @property (nonatomic) CFTimeInterval touchTime;
 @property (nonatomic) CGPoint startPoint;
 @property (nonatomic) CGPoint endPoint;
 @property (nonatomic) BOOL playerIsAlive;
+@property (nonatomic) BOOL shooterIsDead;
 @property (nonatomic) NSInteger ammoCount;
 @property (nonatomic) NSUInteger score;
 @property (strong, nonatomic) SKLabelNode *ammoLabel;
@@ -65,6 +70,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
         _zombieSpawnTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0 target: self selector: @selector(addZombie) userInfo: nil repeats: YES];
         _smartZombieSpawnTimer = [NSTimer scheduledTimerWithTimeInterval: 13.0 target: self selector: @selector(addSmartZombie) userInfo: nil repeats: YES];
         _giantZombieSpawnTimer = [NSTimer scheduledTimerWithTimeInterval: 9.0 target: self selector: @selector(addGiantZombie) userInfo: nil repeats: YES];
+        _shooterZombieTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updateShooter) userInfo:nil repeats:YES];
         _zombieVelocityTimer = [NSTimer scheduledTimerWithTimeInterval: 0.3 target: self selector: @selector(updateZombieVelocity) userInfo: nil repeats: YES];
         _ammoTimer = [NSTimer scheduledTimerWithTimeInterval: 10 target: self selector: @selector(updateAmmo) userInfo: nil repeats: YES];
         
@@ -90,8 +96,10 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     if ((contact.bodyA.node == _player) || (contact.bodyB.node == _player))
     {
         SKNode *contactNode = (contact.bodyA.node != _player) ? contact.bodyA.node : contact.bodyB.node;
-        if ([contactNode isKindOfClass:[Zombie class]])
+        if ([contactNode isKindOfClass:[Zombie class]] || contactNode == _shooterBullet)
         {
+            [_shooterBullet removeFromParent];
+            _shooterBullet = nil;
             [self endGame];
         }
         else if ([contactNode isKindOfClass:[Ammo class]])
@@ -100,6 +108,36 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
             [contactNode removeFromParent];
             _ammoCount += 8;
             [self updateAmmoLabelText];
+        }
+    }
+    else if ((contact.bodyA.node == _shooterBullet) || (contact.bodyB.node == _shooterBullet))
+    {
+        SKNode *contactNode = (contact.bodyA.node != _shooterBullet) ? contact.bodyA.node : contact.bodyB.node;
+        if ([contactNode isKindOfClass:[Zombie class]])
+        {
+            Zombie *newZombie = [[Zombie alloc] initZombieForParent:self atPoint:_shooterBullet.position];
+            [_zombies addObject:newZombie];
+            [_shooterBullet removeFromParent];
+            _shooterBullet = nil;
+        }
+        else if ([contactNode isKindOfClass:[Ammo class]])
+        {
+            [_ammoBoxes removeObject:(Ammo*)contactNode];
+            [contactNode removeFromParent];
+            [_shooterBullet removeFromParent];
+            _shooterBullet = nil;
+        }
+        else if ([contactNode isKindOfClass:[Bullet class]])
+        {
+            [_shooterBullet removeFromParent];
+            _shooterBullet = nil;
+            [_bullet removeFromParent];
+            _bullet = nil;
+        }
+        else
+        {
+            [_shooterBullet removeFromParent];
+            _shooterBullet = nil;
         }
     }
     else if ((contact.bodyA.node == _bullet) || (contact.bodyB.node == _bullet))
@@ -207,7 +245,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
                 CGVector velocity = CGVectorMake(diff.x*400/fabsf(diffLength), diff.y*400/fabsf(diffLength));
                 if (diffLength > 4.0f && _ammoCount > 0)
                 {
-                    _bullet = [[Bullet alloc] initBulletForParent:self atPlayer:_player withVelocity:velocity];
+                    _bullet = [[Bullet alloc] initBulletForParent:self atEntity:_player withVelocity:velocity];
                     _ammoCount--;
                     [self updateAmmoLabelText];
                 }
@@ -232,8 +270,11 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     }
     
     _bullet = nil;
+    _shooter = nil;
+    _shooterBullet = nil;
     
     _playerIsAlive = true;
+    _shooterIsDead = false;
     
     _zombies = [[NSMutableArray alloc] init];
     _ammoBoxes = [[NSMutableArray alloc] init];
@@ -322,6 +363,40 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     {
         GiantZombie *zombie = [[GiantZombie alloc] initGiantZombieForParent:self andAvoidPlayer:_player];
         [_zombies addObject:zombie];
+        _score++;
+        [self updateScoreLabelText];
+    }
+}
+
+-(void)updateShooter
+{
+    if (_playerIsAlive)
+    {
+        static int loop = 0;
+    
+        if (loop % 4 == 0)
+        {
+            if (_shooter == nil && _shooterIsDead)
+            {
+                [self addShooterZombie];
+                _shooterIsDead = false;
+            }
+            else if (_shooter == nil && !_shooterIsDead)
+            {
+                _shooterIsDead = true;
+            }
+        }
+        _shooterBullet = [_shooter shootPlayer:_player];
+        loop++;
+    }
+}
+
+-(void)addShooterZombie
+{
+    if (_playerIsAlive)
+    {
+        _shooter = [[ShooterZombie alloc] initShooterZombieForParent:self andAvoidPlayer:_player];
+        [_zombies addObject:_shooter];
         _score++;
         [self updateScoreLabelText];
     }

@@ -28,12 +28,31 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:6];
     self.physicsBody.affectedByGravity = false;
     self.physicsBody.allowsRotation = false;
-    self.health = 40;
+    self.health = 100;
     self.physicsBody.categoryBitMask = CollisionCategoryZombie;
     [self setRandomVelocity];
     [parent addChild:self];
     
     return self;
+}
+
+-(Bullet*)shootPlayer:(Player *)player
+{
+    float diffX = player.position.x - self.position.x;
+    float diffY = player.position.y - self.position.y;
+    float dist = sqrtf(diffX * diffX + diffY * diffY);
+    
+    if (dist == 0)
+    {
+        dist = 1;
+    }
+    
+    float facX = 400 * diffX / dist;
+    float facY = 400 * diffY / dist;
+    
+    Bullet *bullet = [[Bullet alloc] initBulletForParent:(SKScene*)self.parent atEntity:self withVelocity:CGVectorMake(facX, facY)];
+    
+    return bullet;
 }
 
 - (CGPoint) randomPointWithinContainerSize:(CGSize)containerSize forViewSize:(CGSize)size andAvoidPlayer:(Player*)player
@@ -81,12 +100,8 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 
 -(void)updateVelocityTowardPlayer:(Player *)player
 {
-    float plVelX = player.physicsBody.velocity.dx;
-    float plVelY = player.physicsBody.velocity.dy;
-    //float plVel = sqrtf(plVelX * plVelX + plVelY * plVelY);
-    
-    float diffX = player.position.x + .75 * plVelX - self.position.x;
-    float diffY = player.position.y + .75 * plVelY - self.position.y;
+    float diffX = player.position.x - self.position.x;
+    float diffY = player.position.y - self.position.y;
     float dist = sqrtf(diffX * diffX + diffY * diffY);
     
     if (dist == 0)
