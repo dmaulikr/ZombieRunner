@@ -54,16 +54,6 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     return sqrtf((point1.x - point2.x)*(point1.x - point2.x) + (point1.y + point2.y)*(point1.y + point2.y));
 }
 
--(BOOL)checkForDespawn:(SKScene *)scene
-{
-    if (self.position.x < 7 || self.position.y < 7 || self.position.x > (scene.size.width - 7) || self.position.y > (scene.size.height - 7))
-    {
-        return true;
-    }
-    
-    return false;
-}
-
 
 
 @end
