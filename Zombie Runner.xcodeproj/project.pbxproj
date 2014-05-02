@@ -165,22 +165,10 @@
 				0473E415190857030096BE76 /* MyScene.m */,
 				0473E419190857030096BE76 /* Images.xcassets */,
 				0473E403190857030096BE76 /* Supporting Files */,
-				0473E436190857210096BE76 /* Zombie.h */,
-				0473E437190857210096BE76 /* Zombie.m */,
-				043686101911D72900B31C32 /* GiantZombie.h */,
-				043686111911D72900B31C32 /* GiantZombie.m */,
+				04D13DB9191317E600B6BF70 /* Zombies */,
 				047632EB19085F48005DC1C8 /* Player.h */,
 				047632EC19085F48005DC1C8 /* Player.m */,
-				047632EE19086920005DC1C8 /* Joystick.h */,
-				047632EF19086920005DC1C8 /* Joystick.m */,
-				047632FE19087541005DC1C8 /* JoystickItem.h */,
-				047632FF19087541005DC1C8 /* JoystickItem.m */,
-				04E37D57190C74420073DBF4 /* Bullet.h */,
-				04E37D58190C74420073DBF4 /* Bullet.m */,
-				04E37DA2190CE9150073DBF4 /* Ammo.h */,
-				04E37DA3190CE9150073DBF4 /* Ammo.m */,
-				04D13DB41912935300B6BF70 /* SmartZombie.h */,
-				04D13DB51912935300B6BF70 /* SmartZombie.m */,
+				04D13DBA1913180A00B6BF70 /* Auxiliary */,
 			);
 			path = "Zombie Runner";
 			sourceTree = "<group>";
@@ -225,6 +213,34 @@
 				047632F219086A85005DC1C8 /* zombie.png */,
 			);
 			name = Graphics;
+			sourceTree = "<group>";
+		};
+		04D13DB9191317E600B6BF70 /* Zombies */ = {
+			isa = PBXGroup;
+			children = (
+				0473E436190857210096BE76 /* Zombie.h */,
+				0473E437190857210096BE76 /* Zombie.m */,
+				043686101911D72900B31C32 /* GiantZombie.h */,
+				043686111911D72900B31C32 /* GiantZombie.m */,
+				04D13DB41912935300B6BF70 /* SmartZombie.h */,
+				04D13DB51912935300B6BF70 /* SmartZombie.m */,
+			);
+			name = Zombies;
+			sourceTree = "<group>";
+		};
+		04D13DBA1913180A00B6BF70 /* Auxiliary */ = {
+			isa = PBXGroup;
+			children = (
+				047632EE19086920005DC1C8 /* Joystick.h */,
+				047632EF19086920005DC1C8 /* Joystick.m */,
+				047632FE19087541005DC1C8 /* JoystickItem.h */,
+				047632FF19087541005DC1C8 /* JoystickItem.m */,
+				04E37D57190C74420073DBF4 /* Bullet.h */,
+				04E37D58190C74420073DBF4 /* Bullet.m */,
+				04E37DA2190CE9150073DBF4 /* Ammo.h */,
+				04E37DA3190CE9150073DBF4 /* Ammo.m */,
+			);
+			name = Auxiliary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -212,18 +212,11 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 
 -(void)update:(CFTimeInterval)currentTime
 {
-    //_playerIsAlive = ![_player checkContactedBodiesForDeath];
-    
     if ([_bullet checkForDespawn:self])
     {
         [_bullet removeFromParent];
         _bullet = nil;
     }
-    /*
-    if (!_playerIsAlive)
-    {
-        [self resetGame];
-    }*/
 }
 
 -(void)resetGame

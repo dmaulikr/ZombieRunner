@@ -54,24 +54,9 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     return sqrtf((point1.x - point2.x)*(point1.x - point2.x) + (point1.y + point2.y)*(point1.y + point2.y));
 }
 
--(Zombie*)checkForKill:(NSMutableArray *)zombies
-{
-    Zombie *zombie = nil;
-    
-    for (Zombie *testZombie in zombies)
-    {
-        if ([self distanceFromPoint:testZombie.position toPoint:self.position] <= 9)
-        {
-            return testZombie;
-        }
-    }
-    
-    return zombie;
-}
-
 -(BOOL)checkForDespawn:(SKScene *)scene
 {
-    if (self.position.x < 10 || self.position.y < 10 || self.position.x > (scene.size.width - 10) || self.position.y > (scene.size.height - 10))
+    if (self.position.x < 7 || self.position.y < 7 || self.position.x > (scene.size.width - 7) || self.position.y > (scene.size.height - 7))
     {
         return true;
     }

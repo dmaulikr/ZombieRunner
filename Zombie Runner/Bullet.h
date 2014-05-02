@@ -14,6 +14,5 @@
 
 -(instancetype)initBulletForParent:(SKScene*)parent atPlayer:(Player*)player withVelocity:(CGVector)velocity;
 -(BOOL)checkForDespawn:(SKScene*)scene;
--(Zombie*)checkForKill:(NSMutableArray*)zombies;
 
 @end
