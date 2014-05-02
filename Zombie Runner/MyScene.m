@@ -30,6 +30,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 @property (strong, nonatomic) NSMutableArray *zombies;
 @property (strong, nonatomic) NSMutableArray *ammoBoxes;
 @property (strong, nonatomic) Bullet *bullet;
+@property (strong, nonatomic) Bullet *zomBullet;
 @property (strong, nonatomic) NSTimer *zombieSpawnTimer;
 @property (strong, nonatomic) NSTimer *giantZombieSpawnTimer;
 @property (strong, nonatomic) NSTimer *smartZombieSpawnTimer;
@@ -140,6 +141,11 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
             _score -= 2;
             [self updateScoreLabelText];
         }
+        else
+        {
+            [_bullet removeFromParent];
+            _bullet = nil;
+        }
     }
 }
 
@@ -212,11 +218,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 
 -(void)update:(CFTimeInterval)currentTime
 {
-    if ([_bullet checkForDespawn:self])
-    {
-        [_bullet removeFromParent];
-        _bullet = nil;
-    }
+  
 }
 
 -(void)resetGame
