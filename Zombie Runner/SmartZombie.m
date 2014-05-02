@@ -63,27 +63,10 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     return CGPointMake(randomX, randomY);
 }
 
--(NSMutableArray*)spawnBabyZombiesInScene:(SKScene*)scene
-{
-    NSLog(@"Start");
-    NSMutableArray *zoms = [[NSMutableArray alloc] initWithCapacity:3];
-    
-    for (int i = 0; i < 3; i++)
-    {
-        CGPoint newLoc = CGPointMake(self.position.x + 1, self.position.y - 1 + i);
-        Zombie *zombie = [[Zombie alloc] initZombieForParent:scene atPoint:newLoc];
-        [zoms addObject:zombie];
-    }
-    
-    NSLog(@"Finish");
-    return zoms;
-}
-
 -(void)updateVelocityTowardPlayer:(Player *)player
 {
     float plVelX = player.physicsBody.velocity.dx;
     float plVelY = player.physicsBody.velocity.dy;
-    //float plVel = sqrtf(plVelX * plVelX + plVelY * plVelY);
 
     float diffX = player.position.x + .75 * plVelX - self.position.x;
     float diffY = player.position.y + .75 * plVelY - self.position.y;
@@ -99,51 +82,30 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     
     if (dist < 300)
     {
-        facX = 2 * (diffX) / dist;
+        facX = 2 * diffX / dist;
         facY = 2 * diffY / dist;
     }
     else
     {
-        float velX;
-        if (self.physicsBody.velocity.dx != 0)
-        {
-            velX = self.physicsBody.velocity.dx;
-        }
-        else
-        {
-            velX = .000001;
-        }
+        float velX = self.physicsBody.velocity.dx != 0 ? self.physicsBody.velocity.dx : .000001;
         float velY = self.physicsBody.velocity.dy;
-        
         float angle = atan(fabsf(velY/velX));
-        
         float ranFac = ((rand()%19)/10 - .9);
         
         angle += ranFac;
-        
         facX = cosf(angle);
         facY = sinf(angle);
         
         if (velX < 0)
-        {
             facX *= -1;
-        }
         
         if (velY < 0)
-        {
             facY *= -1;
-        }
         
         if (angle > M_1_PI/2)
-        {
             velX *= -1;
-        }
         else if (angle < 0)
-        {
             velY *= -1;
-        }
-        
-        
     }
     
     self.physicsBody.velocity = CGVectorMake(facX * VELOCITY, facY * VELOCITY);

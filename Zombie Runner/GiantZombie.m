@@ -8,7 +8,7 @@
 
 #import "GiantZombie.h"
 
-#define VELOCITY 52
+#define VELOCITY 50
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory)
 {
@@ -65,7 +65,6 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
 
 -(NSMutableArray*)spawnBabyZombiesInScene:(SKScene*)scene
 {
-    NSLog(@"Start");
     NSMutableArray *zoms = [[NSMutableArray alloc] initWithCapacity:3];
     
     for (int i = 0; i < 3; i++)
@@ -75,7 +74,6 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
         [zoms addObject:zombie];
     }
     
-    NSLog(@"Finish");
     return zoms;
 }
 
@@ -101,46 +99,25 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory)
     }
     else
     {
-        float velX;
-        if (self.physicsBody.velocity.dx != 0)
-        {
-            velX = self.physicsBody.velocity.dx;
-        }
-        else
-        {
-            velX = .000001;
-        }
+        float velX = self.physicsBody.velocity.dx != 0 ? self.physicsBody.velocity.dx : .000001;
         float velY = self.physicsBody.velocity.dy;
-        
         float angle = atan(fabsf(velY/velX));
-        
         float ranFac = ((rand()%19)/10 - .9);
         
         angle += ranFac;
-        
         facX = cosf(angle);
         facY = sinf(angle);
         
         if (velX < 0)
-        {
             facX *= -1;
-        }
         
         if (velY < 0)
-        {
             facY *= -1;
-        }
         
         if (angle > M_1_PI/2)
-        {
             velX *= -1;
-        }
         else if (angle < 0)
-        {
             velY *= -1;
-        }
-        
-        
     }
     
     self.physicsBody.velocity = CGVectorMake(facX * VELOCITY, facY * VELOCITY);

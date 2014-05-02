@@ -37,6 +37,8 @@
 		04D13DB8191296C300B6BF70 /* smartzombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D13DB7191296C300B6BF70 /* smartzombie.png */; };
 		04E37D59190C74420073DBF4 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37D58190C74420073DBF4 /* Bullet.m */; };
 		04E37DA4190CE9150073DBF4 /* Ammo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37DA3190CE9150073DBF4 /* Ammo.m */; };
+		04E5F40A1914160700956F19 /* ShooterZombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5F4091914160700956F19 /* ShooterZombie.m */; };
+		04E5F40C1914167D00956F19 /* shooterzombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5F40B1914167D00956F19 /* shooterzombie.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,9 @@
 		04E37D58190C74420073DBF4 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
 		04E37DA2190CE9150073DBF4 /* Ammo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ammo.h; sourceTree = "<group>"; };
 		04E37DA3190CE9150073DBF4 /* Ammo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ammo.m; sourceTree = "<group>"; };
+		04E5F4081914160700956F19 /* ShooterZombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShooterZombie.h; sourceTree = "<group>"; };
+		04E5F4091914160700956F19 /* ShooterZombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShooterZombie.m; sourceTree = "<group>"; };
+		04E5F40B1914167D00956F19 /* shooterzombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shooterzombie.png; path = Graphics/shooterzombie.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +210,7 @@
 		047632FD19086E79005DC1C8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				04E5F40B1914167D00956F19 /* shooterzombie.png */,
 				04D13DB7191296C300B6BF70 /* smartzombie.png */,
 				043686151911DA7600B31C32 /* giantzombie.png */,
 				047632F919086E72005DC1C8 /* joystick.png */,
@@ -224,6 +230,8 @@
 				043686111911D72900B31C32 /* GiantZombie.m */,
 				04D13DB41912935300B6BF70 /* SmartZombie.h */,
 				04D13DB51912935300B6BF70 /* SmartZombie.m */,
+				04E5F4081914160700956F19 /* ShooterZombie.h */,
+				04E5F4091914160700956F19 /* ShooterZombie.m */,
 			);
 			name = Zombies;
 			sourceTree = "<group>";
@@ -321,6 +329,7 @@
 			files = (
 				0473E407190857030096BE76 /* InfoPlist.strings in Resources */,
 				047632F319086A85005DC1C8 /* player.png in Resources */,
+				04E5F40C1914167D00956F19 /* shooterzombie.png in Resources */,
 				047632FC19086E72005DC1C8 /* joystickbg.png in Resources */,
 				043686161911DA7600B31C32 /* giantzombie.png in Resources */,
 				0473E41A190857030096BE76 /* Images.xcassets in Resources */,
@@ -356,6 +365,7 @@
 				04E37DA4190CE9150073DBF4 /* Ammo.m in Sources */,
 				04E37D59190C74420073DBF4 /* Bullet.m in Sources */,
 				0473E409190857030096BE76 /* main.m in Sources */,
+				04E5F40A1914160700956F19 /* ShooterZombie.m in Sources */,
 				047632ED19085F48005DC1C8 /* Player.m in Sources */,
 				0473E438190857210096BE76 /* Zombie.m in Sources */,
 			);
